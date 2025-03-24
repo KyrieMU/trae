@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹球打砖块</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            background: #333;
+            display: block;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .game-container {
+            position: relative;
+            text-align: center;
+        }
+        .score-display {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            right: 0;
+            color: #333;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="score-display">分数: <span id="score">0</span></div>
+        <canvas id="gameCanvas" width="480" height="640"></canvas>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>

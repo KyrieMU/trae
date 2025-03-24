@@ -1,0 +1,6 @@
+wallhaven_crawler.egg-info/PKG-INFO
+wallhaven_crawler.egg-info/SOURCES.txt
+wallhaven_crawler.egg-info/dependency_links.txt
+wallhaven_crawler.egg-info/entry_points.txt
+wallhaven_crawler.egg-info/requires.txt
+wallhaven_crawler.egg-info/top_level.txt

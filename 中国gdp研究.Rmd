@@ -1,0 +1,48 @@
+---
+title: "中国gdp研究"
+author: "陈建杰（2022190065）"
+date: "2024-12-16"
+output: html_document
+---
+# 下载数据
+```{r}
+library(fpp3)
+library(pedquant)
+da <- ed_fred('MKTGDPCNA646NWDB',date_range = "50y") 
+#可以去FRED的网站上去搜索数据代码
+#https://fred.stlouisfed.org/
+```
+```{r}
+da1=da$MKTGDPCNA646NWDB
+x= da1$date
+y = da1$value
+gdp = data.frame(x,y)
+```
+
+```{r}
+acf(gdp$y)
+```
+
+```{r}
+y1 = diff(gdp$y)
+gdp1 =  data.frame(c(1:length(y1)),y1)
+acf(gdp1$y1)
+ts.plot(gdp1)
+```
+
+
+
+```{r}
+gr = (y[-1]-y[-length(y)])/y[-length(y)]
+gdp2 =  data.frame(c(1:length(gr)),gr)
+ts.plot(gdp2$gr)
+acf(gdp2$gr)
+pacf(gdp2$gr)
+```
+
+```{r}
+
+fit = arima(gdp2$gr,order = c(1,0,0))
+summary(fit)
+
+```

@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: wallhaven-crawler
+Version: 1.0.0
+Summary: 一个功能强大的Wallhaven网站壁纸爬虫工具
+Home-page: https://github.com/yourusername/wallhaven-crawler
+Author: Trae AI
+Author-email: example@example.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/plain
+
+一个功能强大的Wallhaven网站壁纸爬虫工具，支持自动登录、多线程下载和自动翻页功能。

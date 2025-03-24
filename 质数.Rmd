@@ -1,0 +1,137 @@
+---
+title: "质数"
+author: "陈建杰（2022190065）"
+date: "2024-11-26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+筛法
+```{r}
+prime_sieve_vectorized <- function(n) {
+  primes <- logical(n)
+  primes[] <- TRUE  # 预分配内存后整体赋值为TRUE
+  primes[1] <- FALSE
+  for (i in 2:sqrt(n)) {
+    if (primes[i]) {
+      # 向量化操作标记倍数为非质数
+      idx <- seq(i * 2, n, by = i)
+      primes[idx] <- FALSE
+    }
+  }
+  which(primes)
+}
+
+# 同样找出1000以内质数示例
+prime_numbers_vectorized <- prime_sieve_vectorized(1000)
+print(prime_numbers_vectorized)
+
+```
+
+```{r}
+# 判断一个数是否为质数的函数（辅助函数）
+prime_sieve_vectorized <- function(n) {
+  primes <- logical(n)
+  primes[] <- TRUE  # 预分配内存后整体赋值为TRUE
+  primes[1] <- FALSE
+  for (i in 2:sqrt(n)) {
+    if (primes[i]) {
+      # 向量化操作标记倍数为非质数
+      idx <- seq(i * 2, n, by = i)
+      primes[idx] <- FALSE
+    }
+  }
+  which(primes)
+}
+
+
+# 测试梅森质数的函数
+test_mersenne_prime <- function(p) {
+  if (!prime_sieve_vectorized(p)) {
+    return(FALSE)
+  }
+  mersenne_num <- 2^p - 1
+  return(prime_sieve_vectorized(mersenne_num))
+}
+
+# 示例用法，测试几个常见的指数对应的是否为梅森质数
+ps <- c(2, 3, 5, 7, 11)  # 选择几个质数作为指数p
+results <- sapply(ps, test_mersenne_prime)
+print(results)
+
+
+```
+
+```{r}
+is_mersenne_prime <- function(n) {
+  if (n <= 1) {
+    return(FALSE)
+  }
+
+  # 找到可能的指数p使得2^p - 1 = n
+  p <- log2(n + 1)
+
+  # 检查p是否为整数
+  if (p!= round(p)) {
+    return(FALSE)
+  }
+
+  p <- as.integer(p)
+
+  # 使用Lucas-Lehmer测试来验证是否为梅森质数
+  s <- 4
+  for (i in 1:(p - 2)) {
+    s <- (s^2 - 2) %% n
+  }
+
+  return(s == 0)
+}
+
+is_mersenne_prime(3)
+```
+
+
+```{r}
+# 用于判断一个数是否为梅森质数的函数
+is_mersenne_prime <- function(n) {
+  if (n <= 1) {
+    return(FALSE)
+  }
+
+  p <- log2(n + 1)
+  if (p!= round(p)) {
+    return(FALSE)
+  }
+
+  p <- as.integer(p)
+
+  s <- 4
+  for (i in 1:(p - 2)) {
+    s <- (s^2 - 2) %% n
+  }
+
+  return(s == 0)
+}
+
+# 寻找指定范围内的梅森质数
+find_mersenne_primes <- function(max_num) {
+  mersenne_primes <- c()
+  for (i in 1:max_num) {
+    candidate <- 2^i - 1
+    if (is_mersenne_prime(candidate)) {
+      mersenne_primes <- c(mersenne_primes, candidate)
+    }
+  }
+  return(mersenne_primes)
+}
+
+# 设置寻找梅森质数的上限
+upper_limit <- 1000
+found_primes <- find_mersenne_primes(upper_limit)
+print(found_primes)
+
+```
