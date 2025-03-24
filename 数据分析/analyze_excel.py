@@ -6,7 +6,7 @@ from pyecharts.globals import ThemeType
 # 读取Excel文件
 file_path = "E:\\Desktop\\1\\数据分析\\中国人口\\分地区人口的城乡构成和出生率、死亡率、自然增长率(2022年).xlsx"
 df = pd.read_excel(file_path)
-#df = pd.read_excel(file_path)
+#trae123
 # 显示前几行数据
 print("数据预览:")
 print(df.head())
